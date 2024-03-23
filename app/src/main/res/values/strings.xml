@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Ecoule des Loustiques</string>
+    <string name="felicitations_string">Félicitations!</string>
+    <string name="congrats_desc">Vous avez terminé cette table.</string>
+    <string name="congrats_cour">Retourner à ses cours</string>
+    <string name="congrats_mult">Une autre Table de Multiplication</string>
+    <string name="cour_title">Tableau de bord des cours</string>
+    <string name="cour_math">Mathématiques</string>
+    <string name="cour_cultG">Culture générale</string>
+    <string name="cour_fr">Français</string>
 </resources>

@@ -1,0 +1,52 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FelicitationsActivity">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/congratulationsTextView"
+        android:layout_centerInParent="true"
+        android:layout_margin="16dp"
+        android:text="@string/felicitations_string"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/congratulationsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="@string/congrats_desc"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_margin="16dp" />
+
+    <Button
+        android:id="@+id/courButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/congratulationsTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:text="@string/congrats_cour"
+         />
+
+    <Button
+        android:id="@+id/multiplicationButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/courButton"
+        android:layout_centerHorizontal="true"
+        android:text="@string/congrats_mult"
+         />
+
+</RelativeLayout>
