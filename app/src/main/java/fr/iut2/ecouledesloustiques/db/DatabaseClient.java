@@ -20,7 +20,7 @@ public class DatabaseClient {
 
         // Créer l'objet représentant la base de données de votre application
         // à l'aide du "Room database builder"
-        // MyToDos est le nom de la base de données
+        // EcoleDesLoustics est le nom de la base de données
         //appDatabase = Room.databaseBuilder(context, AppDatabase.class, "MyToDos").build();
 
         ////////// REMPLIR LA BD à la première création à l'aide de l'objet roomDatabaseCallback
@@ -57,4 +57,3 @@ public class DatabaseClient {
         }
     };
 }
-

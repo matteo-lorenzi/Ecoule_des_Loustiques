@@ -1,3 +1,8 @@
+/**
+ * Cette classe représente une activité permettant à l'utilisateur d'ajouter un nouvel utilisateur dans la base de données.
+ * L'utilisateur peut saisir le nom et le prénom de l'utilisateur à ajouter, puis appuyer sur un bouton pour sauvegarder les informations.
+ * Une fois sauvegardé, un toast s'affiche pour informer l'utilisateur que l'opération a été réussie.
+ */
 package fr.iut2.ecouledesloustiques;
 
 import android.os.AsyncTask;
@@ -12,7 +17,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import fr.iut2.ecouledesloustiques.db.DatabaseClient;
 import fr.iut2.ecouledesloustiques.db.User;
 
-
 public class AddUserActivity extends AppCompatActivity {
 
     // DATA
@@ -21,7 +25,6 @@ public class AddUserActivity extends AppCompatActivity {
     // VIEW
     private EditText editTextNomView;
     private EditText editTextPrenomView;
-    private EditText editTextFinishByView;
     private Button saveView;
 
     @Override
@@ -46,6 +49,12 @@ public class AddUserActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Méthode pour sauvegarder un nouvel utilisateur dans la base de données.
+     * Les informations sont extraites des champs de saisie.
+     * Si les champs requis ne sont pas remplis, des erreurs sont affichées.
+     * Une fois l'utilisateur ajouté à la base de données, l'activité se termine et affiche un toast de confirmation.
+     */
     private void saveUser() {
 
         // Récupérer les informations contenues dans les vues
@@ -66,27 +75,27 @@ public class AddUserActivity extends AppCompatActivity {
         }
 
         /**
-         * Création d'une classe asynchrone pour sauvegarder la tache donnée par l'utilisateur
+         * Classe asynchrone pour sauvegarder l'utilisateur dans la base de données de manière asynchrone.
+         * Une fois la sauvegarde terminée, un toast est affiché pour indiquer que l'opération a réussi.
          */
         class SaveUser extends AsyncTask<Void, Void, User> {
 
             @Override
             protected User doInBackground(Void... voids) {
 
-                // creating a task
+                // Création d'un nouvel utilisateur
                 User user = new User();
                 user.setNom(sNom);
                 user.setPrenom(sPrenom);
 
-                // adding to database
+                // Ajout de l'utilisateur à la base de données
                 long id = mDb.getAppDatabase()
                         .userDao()
                         .insert(user);
 
-                // mettre à jour l'id de la tache
-                // Nécessaire si on souhaite avoir accès à l'id plus tard dans l'activité
+                // Mise à jour de l'ID de l'utilisateur
+                // Nécessaire si on souhaite avoir accès à l'ID plus tard dans l'activité
                 user.setId(id);
-
 
                 return user;
             }
@@ -95,17 +104,15 @@ public class AddUserActivity extends AppCompatActivity {
             protected void onPostExecute(User user) {
                 super.onPostExecute(user);
 
-                // Quand la tache est créée, on arrête l'activité AddTaskActivity (on l'enleve de la pile d'activités)
+                // Une fois l'utilisateur ajouté avec succès, terminer l'activité AddUserActivity
                 setResult(RESULT_OK);
                 finish();
                 Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
             }
         }
 
-        //////////////////////////
-        // IMPORTANT bien penser à executer la demande asynchrone
+        // Exécution de la tâche asynchrone pour sauvegarder l'utilisateur
         SaveUser st = new SaveUser();
         st.execute();
     }
-
 }

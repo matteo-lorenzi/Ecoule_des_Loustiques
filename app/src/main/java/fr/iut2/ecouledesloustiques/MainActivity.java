@@ -1,3 +1,9 @@
+/**
+ * Cette classe représente l'activité principale de l'application, affichant la liste des utilisateurs et permettant d'en ajouter de nouveaux.
+ * Les utilisateurs peuvent être ajoutés en cliquant sur le bouton "Ajouter", ce qui ouvre une nouvelle activité d'ajout d'utilisateur.
+ * Les utilisateurs existants sont affichés dans une ListView, où les clics courts et longs sont gérés pour fournir des rétroactions à l'utilisateur.
+ * Les données des utilisateurs sont stockées dans une base de données SQLite via Room.
+ */
 package fr.iut2.ecouledesloustiques;
 
 import android.content.Intent;
@@ -19,15 +25,16 @@ import fr.iut2.ecouledesloustiques.db.User;
 
 public class MainActivity extends AppCompatActivity {
 
-    //
+    // Constante pour le code de requête de l'ajout d'utilisateur
     private static final int REQUEST_CODE_ADD = 0;
 
-    // DATA
+    // Base de données
     private DatabaseClient mDb;
 
+    // Adapter pour la liste des utilisateurs
     private UsersAdapter adapter;
 
-    // VIEW
+    // Vues
     private Button buttonAdd;
     private ListView listUser;
 
@@ -36,18 +43,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Récupération du DatabaseClient
+        // Initialisation de la base de données
         mDb = DatabaseClient.getInstance(getApplicationContext());
 
-        // Récupérer les vues
+        // Récupération des vues
         listUser = findViewById(R.id.listUser);
         buttonAdd = findViewById(R.id.button_add);
 
-        // Lier l'adapter au listView
+        // Initialisation de l'adapter pour la liste des utilisateurs
         adapter = new UsersAdapter(this, new ArrayList<User>());
         listUser.setAdapter(adapter);
 
-        // Ajouter un événement au bouton d'ajout
+        // Gestion du clic sur le bouton d'ajout d'utilisateur
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,95 +63,55 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // EXEMPLE : Ajouter un événement click à la listView
+        // Gestion du clic court sur un utilisateur de la liste
         listUser.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                // Récupération de la tâche cliquée à l'aide de l'adapter
                 User user = adapter.getItem(position);
-
-                // Message
-                Toast.makeText(MainActivity.this, "Click : " + user.getNom(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Clique : " + user.getNom(), Toast.LENGTH_SHORT).show();
             }
         });
 
-        // EXEMPLE : Ajouter un événement long click à la listView
+        // Gestion du clic long sur un utilisateur de la liste
         listUser.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-
-                // Récupération de la tâche cliquée à l'aide de l'adapter
                 User user = adapter.getItem(position);
-
-                // Message
-                Toast.makeText(MainActivity.this, "LongClick : " + user.getNom(), Toast.LENGTH_SHORT).show();
-
+                Toast.makeText(MainActivity.this, "Clique long : " + user.getNom(), Toast.LENGTH_SHORT).show();
                 return false;
             }
         });
-
-        // Mise à jour des taches
-        //getTasks();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // Mise à jour de la liste des utilisateurs à chaque démarrage de l'activité
+        getUsers();
+    }
 
     /**
-     *
-     *
+     * Méthode permettant de récupérer la liste des utilisateurs depuis la base de données de manière asynchrone.
+     * Les utilisateurs récupérés sont ensuite affichés dans la ListView à l'aide de l'adapter.
      */
     private void getUsers() {
-        ///////////////////////
-        // Classe asynchrone permettant de récupérer des taches et de mettre à jour le listView de l'activité
         class GetUsers extends AsyncTask<Void, Void, List<User>> {
-
             @Override
             protected List<User> doInBackground(Void... voids) {
-                List<User> taskList = mDb.getAppDatabase()
+                return mDb.getAppDatabase()
                         .userDao()
                         .getAll();
-                return taskList;
             }
 
             @Override
             protected void onPostExecute(List<User> users) {
                 super.onPostExecute(users);
-
-                // Mettre à jour l'adapter avec la liste de taches
                 adapter.clear();
                 adapter.addAll(users);
-
-                // Now, notify the adapter of the change in source
                 adapter.notifyDataSetChanged();
             }
         }
-
-        //////////////////////////
-        // IMPORTANT bien penser à executer la demande asynchrone
-        // Création d'un objet de type GetUsers et execution de la demande asynchrone
-        GetUsers gt = new GetUsers();
-        gt.execute();
+        GetUsers getUsers = new GetUsers();
+        getUsers.execute();
     }
-
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        // Mise à jour des taches
-        getUsers();
-
-    }
-
-    //    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//
-//        if (requestCode == REQUEST_CODE_ADD && resultCode == RESULT_OK) {
-//
-//            // Mise à jour des taches
-//            getTasks();
-//        }
-//    }
 }

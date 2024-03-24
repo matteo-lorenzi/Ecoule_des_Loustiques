@@ -1,3 +1,7 @@
+/**
+ * Cette classe représente une activité affichant les différentes options de cours disponibles.
+ * L'utilisateur peut choisir parmi les différentes catégories de cours et être redirigé vers les pages correspondantes.
+ */
 package fr.iut2.ecouledesloustiques;
 
 import android.content.Intent;
@@ -30,9 +34,9 @@ public class CourActivity extends AppCompatActivity {
         buttonCultureGenerale.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Rediriger vers la page des cours de culture générale
+                // Rediriger vers la page des cours de culture générale
                 Intent intent = new Intent(CourActivity.this, CultureGeneraleActivity.class);
-               startActivity(intent);
+                startActivity(intent);
             }
         });
 
@@ -41,9 +45,9 @@ public class CourActivity extends AppCompatActivity {
         buttonFrancais.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Rediriger vers la page des cours de français
-//                Intent intent = new Intent(CourActivity.this, FrancaisActivity.class);
-//                startActivity(intent);
+                // Rediriger vers la page des cours de français
+                // Intent intent = new Intent(CourActivity.this, FrancaisActivity.class);
+                // startActivity(intent);
             }
         });
     }

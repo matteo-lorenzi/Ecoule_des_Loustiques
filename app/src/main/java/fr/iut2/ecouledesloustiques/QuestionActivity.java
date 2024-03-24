@@ -1,3 +1,9 @@
+/**
+ * Cette classe représente l'activité où l'utilisateur répond aux questions de multiplication.
+ * L'utilisateur voit une question de multiplication à la fois et doit saisir la réponse dans un EditText.
+ * Après avoir validé sa réponse, l'utilisateur est informé si sa réponse est correcte ou incorrecte.
+ * S'il répond correctement à toutes les questions, il est redirigé vers l'activité FelicitationsActivity.
+ */
 package fr.iut2.ecouledesloustiques;
 
 import android.annotation.SuppressLint;
@@ -11,9 +17,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class QuestionActivity extends Activity {
+    // Éléments de l'interface utilisateur
     private TextView questionTextView;
     private EditText answerEditText;
+
+    // Numéro de table de multiplication
     private int tableNumber;
+    // Numéro de la question actuelle
     private int currentNumber = 1;
 
     @SuppressLint("SetTextI18n")
@@ -22,20 +32,22 @@ public class QuestionActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
 
+        // Récupération des vues
         TextView titleTextView = findViewById(R.id.textView);
         questionTextView = findViewById(R.id.questionTextView);
         answerEditText = findViewById(R.id.answerEditText);
         Button validateButton = findViewById(R.id.validateButton);
 
-        // Récupérer le numéro de table de l'intention
+        // Récupération du numéro de table de l'intent
         tableNumber = getIntent().getIntExtra("tableNumber", 1);
 
-        // Mettre à jour le titre avec le numéro de table
+        // Mise à jour du titre avec le numéro de table
         titleTextView.setText("Table de " + tableNumber);
 
-        // Afficher la première question
+        // Affichage de la première question
         displayQuestion();
 
+        // Gestion du clic sur le bouton de validation
         validateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,13 +56,20 @@ public class QuestionActivity extends Activity {
         });
     }
 
+    /**
+     * Méthode pour afficher la question actuelle dans la TextView.
+     */
     private void displayQuestion() {
         String question = currentNumber + " x " + tableNumber + " = ?";
         questionTextView.setText(question);
     }
 
-    private int errorCount = 0; // Ajoutez ce champ à votre classe
+    // Champ pour compter les erreurs
+    private int errorCount = 0;
 
+    /**
+     * Méthode pour vérifier la réponse donnée par l'utilisateur.
+     */
     private void checkAnswer() {
         String answerText = answerEditText.getText().toString();
         if (!answerText.isEmpty()) {
@@ -59,22 +78,22 @@ public class QuestionActivity extends Activity {
                 if (currentNumber * tableNumber == answer) {
                     Toast.makeText(this, "Correct! Passons à la question suivante.", Toast.LENGTH_SHORT).show();
                     currentNumber++;
-                    errorCount = 0; // Réinitialisez le compteur d'erreurs
+                    errorCount = 0; // Réinitialisation du compteur d'erreurs
                     if (currentNumber <= 10) {
                         displayQuestion();
                     } else {
-                        // Créez une nouvelle Intent pour ouvrir l'activité de félicitations
+                        // Création d'une nouvelle Intent pour ouvrir l'activité de félicitations
                         Intent intent = new Intent(this, FelicitationsActivity.class);
 
-                        // Ajoutez des extras à l'intent pour passer des informations à l'activité de félicitations
+                        // Ajout d'extras à l'intent pour passer des informations à l'activité de félicitations
                         intent.putExtra("nextActivityCour", CourActivity.class);
                         intent.putExtra("nextActivityMultiplication", MultiplicationActivity.class);
 
-                        // Démarrez l'activité
+                        // Démarrage de l'activité
                         startActivity(intent);
                     }
                 } else {
-                    errorCount++; // Incrémente le compteur d'erreurs
+                    errorCount++; // Incrémentation du compteur d'erreurs
                     if (errorCount > 2) {
                         Toast.makeText(this, "Il semble que vous ayez du mal avec cette question. La réponse est " + (currentNumber * tableNumber) + ".", Toast.LENGTH_SHORT).show();
                     } else {
