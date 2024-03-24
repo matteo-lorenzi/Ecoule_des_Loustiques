@@ -1,6 +1,52 @@
 # Mon Projet
 
-Ce dépôt GitHub contient le code source de mon projet.
+## Mini Projet Android : L'École des Loustics
+
+Ce projet a pour objectif de réaliser une application mobile destinée aux écoles primaires. L'application permettra aux élèves de s'auto-évaluer sur des exercices mathématiques et des exercices de culture générale.
+
+## Ressources de Formation
+
+- Formation Android
+- Guide Android
+- Documentation Android
+- Documentation Java
+- Tutoriel Android en Français
+
+## Présentation du Projet
+
+L'application proposera les fonctionnalités minimales suivantes :
+
+- Exercices mathématiques : tables de multiplication et séries d'additions simples.
+- Création de comptes élèves avec prénom et nom.
+- Exercices de culture générale : exercices de question/réponse en français.
+
+## Étapes du Projet
+
+### Étape 1 : Mise en Place et Réalisation du Workflow
+
+- Réalisation du workflow de l'application sur papier.
+- Utilisation d'intentions explicites pour naviguer entre les différentes parties de l'application.
+
+### Étape 2 : Création des Exercices Mathématiques
+
+- Intégration des exercices de tables de multiplication et d'additions simples.
+- Séparation des données, des vues et du traitement selon le modèle MVC.
+
+### Étape 3 : Gestion des Comptes Élèves
+
+- Création de comptes élèves avec prénom et nom.
+- Stockage des informations des comptes en base de données avec Room.
+- Affichage des comptes à l'accueil de l'application avec ListView ou RecyclerView.
+
+### Étape 4 : Création des Exercices de Culture Générale
+
+- Proposition d'exercices de type question/réponse en français.
+- Utilisation d'une base de données pour stocker les questions et les réponses.
+
+### Étape 5 : Bonus
+
+- Ajout de fonctionnalités supplémentaires ou d'exercices additionnels.
+- Possibilité de mettre en place des niveaux de difficulté, des exercices de logique, etc.
 
 ## Fichiers Java
 
