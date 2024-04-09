@@ -1,4 +1,4 @@
-package fr.iut2.ecouledesloustiques.db;
+package fr.iut2.ecouledesloustiques.db.user;
 
 import android.content.Context;
 
@@ -50,9 +50,9 @@ public class DatabaseClient {
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
 
-            //
-            db.execSQL("INSERT INTO task (libelle, description) VALUES(\"tâche 1\", \"installer la librairie Room\");");
-            db.execSQL("INSERT INTO task (libelle, description) VALUES(\"tâche 2\", \" Créer DatabaseClient\");");
+//
+//            db.execSQL("INSERT INTO user (libelle, description) VALUES(\"tâche 1\", \"installer la librairie Room\");");
+//            db.execSQL("INSERT INTO user (libelle, description) VALUES(\"tâche 2\", \" Créer DatabaseClient\");");
 
         }
     };

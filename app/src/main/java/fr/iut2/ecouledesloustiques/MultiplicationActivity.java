@@ -8,17 +8,32 @@ package fr.iut2.ecouledesloustiques;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.NumberPicker;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Switch;
 
 public class MultiplicationActivity extends Activity {
     // Éléments de l'interface utilisateur
     private NumberPicker numberPicker;
     private Button validateButton;
+    private Switch timerSwitch;
 
     // Numéro de la table de multiplication sélectionnée
     private int tableNumber;
+
+    // CountDownTimer
+    private CountDownTimer countDownTimer;
+
+    // Déclaration des boutons radio
+    private RadioButton additionRadioButton;
+    private RadioButton subtractionRadioButton;
+    private RadioButton multiplicationRadioButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +43,7 @@ public class MultiplicationActivity extends Activity {
         // Initialisation des éléments de l'interface utilisateur
         numberPicker = findViewById(R.id.numberPicker);
         validateButton = findViewById(R.id.validateButton);
+        timerSwitch = findViewById(R.id.switch1);
 
         // Définition des valeurs min et max du NumberPicker
         numberPicker.setMinValue(1);
@@ -43,6 +59,7 @@ public class MultiplicationActivity extends Activity {
                 goToQuestionActivity();
             }
         });
+
     }
 
     /**
@@ -51,6 +68,12 @@ public class MultiplicationActivity extends Activity {
     private void goToQuestionActivity() {
         Intent intent = new Intent(this, QuestionActivity.class);
         intent.putExtra("tableNumber", tableNumber);
+        intent.putExtra("isTimerEnabled", timerSwitch.isChecked()); // Passer la valeur du switch (true si activé, false sinon)
+        // Ajouter l'état du bouton radio sélectionné
+        RadioGroup selectBtn = findViewById(R.id.radioGroup);
+        RadioButton selectRadiobtn = findViewById(selectBtn.getCheckedRadioButtonId());
+        intent.putExtra("selectedRadioButtonId", selectRadiobtn.getText());
         startActivity(intent);
     }
+
 }

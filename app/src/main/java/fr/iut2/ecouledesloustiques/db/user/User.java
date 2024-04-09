@@ -1,4 +1,4 @@
-package fr.iut2.ecouledesloustiques.db;
+package fr.iut2.ecouledesloustiques.db.user;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;

@@ -1,4 +1,4 @@
-package fr.iut2.ecouledesloustiques.db;
+package fr.iut2.ecouledesloustiques.db.user;
 
 import androidx.room.Dao;
 import androidx.room.Delete;

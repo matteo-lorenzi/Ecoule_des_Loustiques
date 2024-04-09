@@ -1,8 +1,4 @@
-package fr.iut2.ecouledesloustiques.db;
-
-import androidx.room.Database;
-import androidx.room.RoomDatabase;
-
+package fr.iut2.ecouledesloustiques.db.user;
 
 import androidx.room.Database;
 import androidx.room.RoomDatabase;

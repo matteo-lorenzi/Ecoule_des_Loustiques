@@ -14,8 +14,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import fr.iut2.ecouledesloustiques.db.DatabaseClient;
-import fr.iut2.ecouledesloustiques.db.User;
+import fr.iut2.ecouledesloustiques.db.user.DatabaseClient;
+import fr.iut2.ecouledesloustiques.db.user.User;
 
 public class AddUserActivity extends AppCompatActivity {
 

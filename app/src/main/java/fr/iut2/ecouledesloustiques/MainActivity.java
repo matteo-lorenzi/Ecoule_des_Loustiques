@@ -20,8 +20,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.iut2.ecouledesloustiques.db.DatabaseClient;
-import fr.iut2.ecouledesloustiques.db.User;
+import fr.iut2.ecouledesloustiques.db.user.DatabaseClient;
+import fr.iut2.ecouledesloustiques.db.user.User;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Base de données
     private DatabaseClient mDb;
+
 
     // Adapter pour la liste des utilisateurs
     private UsersAdapter adapter;
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Initialisation de la base de données
         mDb = DatabaseClient.getInstance(getApplicationContext());
+
 
         // Récupération des vues
         listUser = findViewById(R.id.listUser);
@@ -71,6 +73,20 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Clique : " + user.getNom(), Toast.LENGTH_SHORT).show();
             }
         });
+
+        // Gestion du clic court sur un utilisateur de la liste
+
+        listUser.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                User user = adapter.getItem(position);
+
+                Intent intent = new Intent(MainActivity.this, CourActivity.class);
+                intent.putExtra("NameUser", user.getNom()); // "user.getNom()" suppose que votre classe User a une méthode getNom() pour récupérer le nom
+                startActivity(intent);
+            }
+        });
+
 
         // Gestion du clic long sur un utilisateur de la liste
         listUser.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
