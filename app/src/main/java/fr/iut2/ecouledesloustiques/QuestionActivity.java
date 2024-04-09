@@ -17,6 +17,7 @@ public class QuestionActivity extends Activity {
     private TextView questionTextView;
     private EditText answerEditText;
     private TextView timerTextView;
+
     private RadioGroup operationRadioGroup;
 
     // Numéro de table de multiplication

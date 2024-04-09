@@ -14,21 +14,36 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"/>
 
-    <EditText
-        android:id="@+id/answerEditText"
+    <RadioGroup
+        android:id="@+id/answersRadioGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/questionTextView"
         android:layout_marginTop="20dp"
-        android:hint="Entrez votre réponse ici"
-        android:inputType="text" />
+        android:gravity="center">
+
+        <RadioButton
+            android:id="@+id/answerOption1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Réponse 1" />
+
+        <RadioButton
+            android:id="@+id/answerOption2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Réponse 2" />
+
+        <!-- Ajoutez autant de RadioButton que nécessaire pour toutes les réponses possibles -->
+
+    </RadioGroup>
 
     <Button
         android:id="@+id/nextQuestionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Question suivante"
-        android:layout_below="@id/answerEditText"
+        android:layout_below="@id/answersRadioGroup"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp" />
 

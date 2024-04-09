@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 public class DommageActivity extends Activity {
 
+    private TextView errorCountTextView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,8 +18,10 @@ public class DommageActivity extends Activity {
         // Get the error count from the intent
         int errorCount = getIntent().getIntExtra("errorCount", 0);
 
+        System.out.println("NOMBRE D'ERREUR RETORNE" + errorCount);
+
         // Find the TextView
-        TextView errorCountTextView = findViewById(R.id.textView4);
+        errorCountTextView = findViewById(R.id.errorView);
 
         // Set the error count as text
         errorCountTextView.setText("Nombre d'erreurs : " + errorCount);

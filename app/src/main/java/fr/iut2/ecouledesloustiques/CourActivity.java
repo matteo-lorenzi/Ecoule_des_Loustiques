@@ -49,7 +49,7 @@ public class CourActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Rediriger vers la page des cours de culture générale
-                Intent intent = new Intent(CourActivity.this, CultureG.class);
+                Intent intent = new Intent(CourActivity.this, still_in_dev.class);
                 startActivity(intent);
             }
         });
@@ -65,7 +65,6 @@ public class CourActivity extends AppCompatActivity {
             }
         });
 
-        Button resetButton = findViewById(R.id.buttonReset);
 
     }
 }

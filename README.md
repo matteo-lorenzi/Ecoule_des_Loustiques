@@ -81,3 +81,6 @@ Cette activité propose un quiz de questions de culture générale. Elle affiche
 ### UsersAdapter.java
 
 Cet adaptateur personnalisé est utilisé pour afficher une liste d'utilisateurs dans une ListView. Il prend en charge l'affichage des informations des utilisateurs dans une vue de liste.
+
+## Video Youtube
+https://youtu.be/DN5beTscsCU
